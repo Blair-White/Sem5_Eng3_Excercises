@@ -14581,8 +14581,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inEncounterTiles: 0
   lockPlayer: 0
-  mSpeed: 5
+  mSpeed: 0.55
   EncounterRate: 0
+  animator: {fileID: 1490729943}
 --- !u!61 &1490729947
 BoxCollider2D:
   m_ObjectHideFlags: 0

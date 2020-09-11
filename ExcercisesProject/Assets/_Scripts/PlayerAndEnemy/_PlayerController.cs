@@ -12,6 +12,7 @@ public class _PlayerController : MonoBehaviour
     private float EncounterRng;
     private int EncounterThrottle;
     private GameObject FadePanel;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,13 +24,16 @@ public class _PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-  
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(hAxis, vAxis, 0) * mSpeed * Time.deltaTime;
-        if(!lockPlayer)
-        mRig.MovePosition(transform.position + movement);
+        Vector3 movement = new Vector3(hAxis, vAxis, 0);
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Magnitude", movement.magnitude);
+
+        if (!lockPlayer)
+            transform.position = transform.position + movement * mSpeed * Time.deltaTime;
 
         if (hAxis > 0 || vAxis > 0)
         {
