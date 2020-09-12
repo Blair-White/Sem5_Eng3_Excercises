@@ -12,12 +12,10 @@ public class EncounterController : MonoBehaviour
     float StruggleSuccessRate;
 
     [SerializeField]
-    private GameObject DialogueText;
+    private GameObject DialogueText, AbilityButtons;
 
     private GameObject PlayerCharacter, EnemyAi;
 
-    [SerializeField]
-    private GameObject[] AbilityButtons;
 
     [SerializeField]
     private int DelayBetweenActions; private int Delay; 
@@ -43,8 +41,16 @@ public class EncounterController : MonoBehaviour
     void PlayerDied() { State = States.PlayerDied; }
     
     //Outgoing Messages
-    void StartEnemyTurn() { EnemyAi.SendMessage("StartTurn"); }
-    void StartPlayerTurn() { PlayerCharacter.SendMessage("StartTurn"); }
+    void StartEnemyTurn() 
+    {
+        EnemyAi.SendMessage("StartTurn");
+        
+    }
+    void StartPlayerTurn() 
+    {
+        PlayerCharacter.SendMessage("StartTurn");
+        AbilityButtons.SetActive(true);
+    }
 
     void Update()
     {
@@ -62,10 +68,10 @@ public class EncounterController : MonoBehaviour
                     }
                     
                 }
-                
+                else
                 if (!StateCompleted)
                 {
-
+                    StateCompleted = true;
                 }
                 else
                 { 
