@@ -1601,6 +1601,7 @@ MonoBehaviour:
   Highlighter: {fileID: 223948657}
   Dialogue: {fileID: 1401125933}
   mAnimator: {fileID: 1012006244}
+  State: 0
 --- !u!1 &1024941718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2995,6 +2996,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Highlighter: {fileID: 1728462419}
   Dialogue: {fileID: 1401125933}
+  HealthBar: {fileID: 0}
+  GameController: {fileID: 0}
+  mAnimator: {fileID: 1806857643}
+  State: 0
 --- !u!1 &1858824879
 GameObject:
   m_ObjectHideFlags: 0
