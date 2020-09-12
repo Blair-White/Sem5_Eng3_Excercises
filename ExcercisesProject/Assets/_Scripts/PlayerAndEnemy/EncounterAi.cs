@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ public class EncounterAi : MonoBehaviour
     public enum States { Inactive, Idle, Acting, Finished }
     public States State;
 
-    private int delay;
+    public int delay;
     private bool Healing, Damaging;
     private int HealCharges;//0 Attack, 1 heal, 2 Escape;
     private float RNG, HP, TargetHP;
@@ -23,7 +24,7 @@ public class EncounterAi : MonoBehaviour
     void StartTurn()
     {
         Highlighter.SetActive(true);
-        Dialogue.SetActive(false);
+        State = States.Idle;
     }
 
     // Start is called before the first frame update
@@ -42,7 +43,7 @@ public class EncounterAi : MonoBehaviour
         { 
             if(TargetHP < HP)
             {
-                TargetHP += 0.1f;
+                TargetHP += 0.001f;
             }
             if(TargetHP == HP)
             {
@@ -54,7 +55,7 @@ public class EncounterAi : MonoBehaviour
         {
             if(TargetHP > HP)
             {
-                TargetHP -= .01f;
+                TargetHP -= .001f;
             }
             if (TargetHP == HP)
             {
@@ -62,9 +63,12 @@ public class EncounterAi : MonoBehaviour
             }
         }
 
+        HealthBar.GetComponent<Slider>().value = TargetHP;
+        
         if(HP <= 0)
         {
             GameController.SendMessage("EnemyKilled");
+            Dialogue.GetComponent<TextMeshProUGUI>().text = "The Slime Has Been Defeated!!!";
         }
 
         switch (State)
@@ -74,7 +78,7 @@ public class EncounterAi : MonoBehaviour
 
             case States.Idle:
                 delay++;
-                if (delay > 180)
+                if (delay > 480)
                 {
                     if(HP < .5f)
                     {
@@ -82,27 +86,34 @@ public class EncounterAi : MonoBehaviour
                         {
                             Heal();
                             State = States.Acting;
+                            delay = 0;
+                            break;
                         }
                         else
                         {
                             Escape();
                             State = States.Acting;
+                            delay = 0;
+                            break;
                         }
                     }
                     else
                     {
                         Attack();
                         State = States.Acting;
+                        delay = 0;
+                        break;
                     }
-                    delay = 0;
+                    
                 }
                 break;
 
             case States.Acting:
                 delay++;
-                if (delay > 280)
+                if (delay > 980)
                 {
                     State = States.Finished;
+                    delay = 0;
                 }
                 break;
 
@@ -110,6 +121,7 @@ public class EncounterAi : MonoBehaviour
                 Highlighter.SetActive(false);
                 ClearDialogue();
                 State = States.Inactive;
+                GameController.SendMessage("StateFinished");
                 break;
 
             default:
@@ -121,32 +133,34 @@ public class EncounterAi : MonoBehaviour
     {
         //temp set damage amount
         Damaging = true;
-        HP -=.35f;
+        HP -=.25f;
     }
     void Attack() 
     {
         State = States.Acting;
-        mAnimator.SetBool("StartAttack", true); 
+        mAnimator.SetBool("StartAttack", true);
+        Dialogue.GetComponent<TextMeshProUGUI>().text = "The Slime Spits Acid At You.";
     }
     void EndAttack() 
     {
-        State = States.Finished;
         mAnimator.SetBool("StartAttack", false); 
     }
     void Heal()
     {
-        mAnimator.SetBool("StartHeal", true); 
-    
+        mAnimator.SetBool("StartHeal", true);
+        Dialogue.GetComponent<TextMeshProUGUI>().text = "The Slime Oozes A Healing Substance.";
+        HealCharges--;
     }
     void EndHeal()
     {
-        mAnimator.SetBool("StartHeal", false); 
-    
+        mAnimator.SetBool("StartHeal", false);
+        HP += .15f;
+        Healing = true;
     }
     void Escape() 
     {
-        mAnimator.SetBool("StartEscape", true); 
-    
+        mAnimator.SetBool("StartEscape", true);
+        Dialogue.GetComponent<TextMeshProUGUI>().text = "The Slime Tries To Run.";
     }
     void EndEscape()
     {
@@ -156,7 +170,7 @@ public class EncounterAi : MonoBehaviour
 
     void ClearDialogue()
     {
-        Dialogue.GetComponent<Text>().text = "";
+        Dialogue.GetComponent<TextMeshProUGUI>().text = "";
     }
 
 }

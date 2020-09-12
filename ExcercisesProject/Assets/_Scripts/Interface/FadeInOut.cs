@@ -7,13 +7,15 @@ using UnityEngine.UI;
 public class FadeInOut : MonoBehaviour
 {
     private bool FadeOut, FadeIn, FadeComplete;
-    private float mAlpha;
-    
+    private float mAlpha, mVolume;
+    private GameObject AudioMusic;
     // Start is called before the first frame update
     void Start()
     {
         FadeIn = true;
-        mAlpha = 1;
+        mAlpha = 1; mVolume = 0;
+        AudioMusic = GameObject.Find("Audio Source");
+        AudioMusic.GetComponent<AudioSource>().volume = mVolume;
     }
 
     // Update is called once per frame
@@ -26,6 +28,8 @@ public class FadeInOut : MonoBehaviour
                 mAlpha -= 0.001f;
                 this.GetComponent<Image>().color =
                     new Color(0, 0, 0, mAlpha);
+                mVolume += 0.001f;
+                AudioMusic.GetComponent<AudioSource>().volume = mVolume;
             }
             else
             { FadeIn = false; }
@@ -38,6 +42,8 @@ public class FadeInOut : MonoBehaviour
                 mAlpha += 0.001f;
                 this.GetComponent<Image>().color =
                     new Color(0, 0, 0, mAlpha);
+                mVolume -= 0.001f;
+                AudioMusic.GetComponent<AudioSource>().volume = mVolume;
             }
             else
             {

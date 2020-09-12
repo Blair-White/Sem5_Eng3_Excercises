@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class EncounterPlayer : MonoBehaviour
 {
     [SerializeField]
-    private GameObject Highlighter, Dialogue;
+    private GameObject Highlighter, Dialogue, EncounterEnemy, Buttons;
+
+    private GameObject GameController;
 
     [SerializeField]
     private Animator mAnimator;
@@ -26,7 +28,8 @@ public class EncounterPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameController = GameObject.Find("EncounterController");
+        EncounterEnemy = GameObject.FindGameObjectWithTag("EncounterEnemy");
     }
 
     // Update is called once per frame
@@ -42,8 +45,9 @@ public class EncounterPlayer : MonoBehaviour
 
             case States.Acting:
                 delay++;
-                if (delay > 280)
+                if (delay > 980)
                 {
+                    delay = 0;
                     State = States.Finished;
                 }
                     break;
@@ -52,6 +56,7 @@ public class EncounterPlayer : MonoBehaviour
                 Highlighter.SetActive(false);
                 ClearDialogue();
                 State = States.Inactive;
+                GameController.SendMessage("StateFinished");
                 break;
             
             default:
@@ -62,6 +67,7 @@ public class EncounterPlayer : MonoBehaviour
 
     void Attack() 
     {
+        Buttons.SetActive(false);
         State = States.Acting;
         mAnimator.SetBool("StartAttack", true);
         Dialogue.GetComponent<TextMeshProUGUI>().text = "You Attack The Slime!!";
@@ -69,9 +75,11 @@ public class EncounterPlayer : MonoBehaviour
     void EndAttack() 
     {
         mAnimator.SetBool("StartAttack", false);
+        EncounterEnemy.SendMessage("IncomingDamage");
     }
     void Defend() 
     {
+        Buttons.SetActive(false);
         State = States.Acting;
         mAnimator.SetBool("StartDefend", true);
         Dialogue.GetComponent<TextMeshProUGUI>().text = "You Brace For An Attack.";
@@ -82,9 +90,10 @@ public class EncounterPlayer : MonoBehaviour
     }
     void Struggle()
     {
+        Buttons.SetActive(false);
         State = States.Acting;
         mAnimator.SetBool("StartStruggle", true);
-        Dialogue.GetComponent<TextMeshProUGUI>().text = "You Attempt A Rear Naked Choke.";
+        Dialogue.GetComponent<TextMeshProUGUI>().text = "You Attempt A Rear Naked Choke";
     }
     void EndStruggle() 
     {
@@ -92,6 +101,7 @@ public class EncounterPlayer : MonoBehaviour
     }
     void Escape() 
     {
+        Buttons.SetActive(false);
         State = States.Acting;
         mAnimator.SetBool("StartEscape", true);
         Dialogue.GetComponent<TextMeshProUGUI>().text = "You Try To Run Away.";

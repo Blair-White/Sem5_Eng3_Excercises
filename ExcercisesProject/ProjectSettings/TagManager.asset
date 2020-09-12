@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EncounterTile
   - FadePanel
+  - EncounterEnemy
   layers:
   - Default
   - TransparentFX

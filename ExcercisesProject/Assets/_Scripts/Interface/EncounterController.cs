@@ -14,37 +14,48 @@ public class EncounterController : MonoBehaviour
     [SerializeField]
     private GameObject DialogueText, AbilityButtons;
 
-    private GameObject PlayerCharacter, EnemyAi;
+    private GameObject PlayerCharacter, EnemyAi, FadePanel, SceneController;
 
 
     [SerializeField]
-    private int DelayBetweenActions; private int Delay; 
+    private int DelayBetweenActions; 
+    [SerializeField]
+    private int Delay; 
 
-    private enum States
+    public enum States
     {
         Intro, 
         PlayerTurn, AiTurn,
         PlayerDied, Victory, Escaped
     }
-    private States State;
+    public States State;
 
     void Start()
     {
         EnemyAi = GameObject.Find("EnemyA");
         PlayerCharacter = GameObject.Find("PlayerChar");
+        FadePanel = GameObject.Find("Fading Panel");
+        SceneController = GameObject.Find("SceneController");
         State = States.Intro;
     }
     
     //Incoming Messages
-    void StateFinished()  {StateCompleted = true; StateInitiated = false; }
-    void EnemyKilled() { State = States.Victory; }
+    void StateFinished()  {StateCompleted = true; }
+    void EnemyKilled() 
+    {
+        State = States.Victory;
+        PlayerCharacter.GetComponent<EncounterPlayer>().State = EncounterPlayer.States.Inactive;
+        AbilityButtons.SetActive(false);
+        StateInitiated = false;
+        StateCompleted = false;
+    }
     void PlayerDied() { State = States.PlayerDied; }
     
     //Outgoing Messages
     void StartEnemyTurn() 
     {
         EnemyAi.SendMessage("StartTurn");
-        
+        AbilityButtons.SetActive(false);
     }
     void StartPlayerTurn() 
     {
@@ -98,7 +109,9 @@ public class EncounterController : MonoBehaviour
                 {
                     if (StateCompleted)
                     {
-
+                        State = States.AiTurn;
+                        StateCompleted = false;
+                        StateInitiated = false;
                     }
                 }
                 break;
@@ -110,16 +123,17 @@ public class EncounterController : MonoBehaviour
                     if (Delay > DelayBetweenActions)
                     {
                         Delay = 0;
-                        StartEnemyTurn();
                         StateInitiated = true;
-                        StateCompleted = false;
+                        StartEnemyTurn();
                     }
                 }
                 else
                 {
                     if (StateCompleted)
                     {
-
+                        State = States.PlayerTurn;
+                        StateInitiated = false;
+                        StateCompleted = false;
                     }
                 }
                 break;
@@ -148,18 +162,21 @@ public class EncounterController : MonoBehaviour
                 if (!StateInitiated)
                 {
                     Delay++;
-                    if (Delay > DelayBetweenActions)
+                    if (Delay > 1500)
                     {
                         Delay = 0;
                         StateInitiated = true;
-                        StateCompleted = false;
+                        StateCompleted = true;
+                        Debug.Log("Ending Battle");
+                        FadePanel.SendMessage("FadeOutNow");
+                        SceneController.SendMessage("MoveToOverworld");
                     }
                 }
                 else
                 {
                     if (StateCompleted)
                     {
-
+                       
                     }
                 }
                 break;
