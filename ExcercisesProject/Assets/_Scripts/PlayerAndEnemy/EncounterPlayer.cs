@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EncounterPlayer : MonoBehaviour
 {
+    //Incoming Messages
+    void StartTurn() { }
     // Start is called before the first frame update
     void Start()
     {

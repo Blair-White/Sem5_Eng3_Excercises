@@ -15,7 +15,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - CharacterEncounterLayer
   - 
   - 
   - 
@@ -42,4 +42,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: EmptyLayer
+    uniqueID: 336681755
+    locked: 0
+  - name: CharacterLayer
+    uniqueID: 2175157921
+    locked: 0
+  - name: EnemyLayer
+    uniqueID: 734322217
     locked: 0
