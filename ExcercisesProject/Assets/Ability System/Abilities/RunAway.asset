@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55944b13dc5230949944aa204d218da7, type: 3}
+  m_Name: RunAway
+  m_EditorClassIdentifier: 
+  CombatText: Attempts To Run Away
+  Damage: 0
+  Healing: 0
+  DebuffMessage: AttemptFlee
+  Animation: {fileID: 7400000, guid: 867a5d9ceb78d7e4fa6a122229e4b7f5, type: 2}
+  ButtonText: Flee
+  ButtonTextColor: {r: 0.5, g: 0.4693396, b: 0.4693396, a: 0}

@@ -14,6 +14,9 @@ public class EncounterPlayer : MonoBehaviour
     [SerializeField]
     private Animator mAnimator;
 
+    [SerializeField]
+    private AbilityMasterList AbilityList;
+
     public enum States { Inactive, Idle, Acting, Finished }
     public States State;
 

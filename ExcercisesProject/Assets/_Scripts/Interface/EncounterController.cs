@@ -18,7 +18,7 @@ public class EncounterController : MonoBehaviour
 
 
     [SerializeField]
-    private int DelayBetweenActions; 
+    private int DelayBetweenActions = 0; 
     [SerializeField]
     private int Delay; 
 
