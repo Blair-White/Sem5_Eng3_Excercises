@@ -13,6 +13,7 @@ public class _PlayerController : MonoBehaviour
     private int EncounterThrottle;
     private GameObject FadePanel;
     public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +49,9 @@ public class _PlayerController : MonoBehaviour
                     FadePanel = GameObject.FindGameObjectWithTag("FadePanel");
                     FadePanel.SendMessage("FadeOutNow");
                     lockPlayer = true;
-                    this.SendMessage("SaveData");
+                    this.SendMessage("SavePosition");
+                    this.SendMessage("SavePlayerStats");
+                    this.SendMessage("SaveAbilities");
                     GameObject sManager = GameObject.Find("SceneController");
                     sManager.SendMessage("MoveToEncounter");
                 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,10 +16,11 @@ public class ScriptableAbility : ScriptableObject
     [SerializeField]
     public string DebuffMessage;
     [SerializeField]
-    public AnimationClip Animation;
+    public AnimatorController Animator;
     [SerializeField]
     public string ButtonText;
     [SerializeField]
     public Color ButtonTextColor;
-
+    [SerializeField]
+    public bool Learnable;
 }

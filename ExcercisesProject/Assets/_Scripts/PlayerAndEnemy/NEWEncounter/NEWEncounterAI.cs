@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NEWEncounterAI : MonoBehaviour
 {
+    public GameObject EncounterController;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,10 @@ public class NEWEncounterAI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void EndAnimation()
+    {
+        EncounterController.SendMessage("EndEnemyAnimation");
     }
 }

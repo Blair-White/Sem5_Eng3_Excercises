@@ -16,6 +16,7 @@ MonoBehaviour:
   Damage: 0
   Healing: 0
   DebuffMessage: Struggle
-  Animation: {fileID: 7400000, guid: 43af731797b6b2949885e25ad38a18ec, type: 2}
+  Animator: {fileID: 9100000, guid: bd8b97ce1bbfd664a97b809703ea863d, type: 2}
   ButtonText: Struggle
-  ButtonTextColor: {r: 0.52453476, g: 0.23820755, b: 0.9528302, a: 0}
+  ButtonTextColor: {r: 0.52453476, g: 0.23820755, b: 0.9528302, a: 1}
+  Learnable: 1

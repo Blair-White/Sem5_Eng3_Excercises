@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55944b13dc5230949944aa204d218da7, type: 3}
-  m_Name: BasicAttack
+  m_Name: Chomp
   m_EditorClassIdentifier: 
-  CombatText: You Strike The
-  Damage: 0.25
+  CombatText: Bites
+  Damage: 0.2
   Healing: 0
   DebuffMessage: 
-  Animator: {fileID: 9100000, guid: d4d9f59c98c8f3b409da28e663a09a4e, type: 2}
-  ButtonText: Attack
-  ButtonTextColor: {r: 1, g: 0.55153555, b: 0.36320752, a: 1}
+  Animator: {fileID: 9100000, guid: bd8b97ce1bbfd664a97b809703ea863d, type: 2}
+  ButtonText: Chomp
+  ButtonTextColor: {r: 0.5754717, g: 0.06243326, b: 0.07218151, a: 1}
   Learnable: 1

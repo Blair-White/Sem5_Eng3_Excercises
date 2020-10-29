@@ -16,6 +16,7 @@ MonoBehaviour:
   Damage: 0
   Healing: 0.25
   DebuffMessage: 
-  Animation: {fileID: 7400000, guid: 02d7b77501873f848912e5d3af0bb718, type: 2}
+  Animator: {fileID: 9100000, guid: 2e63853684446834aa968087bc059c65, type: 2}
   ButtonText: AcidHeal
-  ButtonTextColor: {r: 0.5330188, g: 1, b: 0.77989036, a: 0}
+  ButtonTextColor: {r: 0.5330188, g: 1, b: 0.77989036, a: 1}
+  Learnable: 1

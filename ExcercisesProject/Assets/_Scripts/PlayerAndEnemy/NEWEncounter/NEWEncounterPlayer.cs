@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NEWEncounterPlayer : MonoBehaviour
 {
+    public GameObject EncounterController;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,11 @@ public class NEWEncounterPlayer : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    void EndAnimation()
+    {
+        EncounterController.SendMessage("EndPlayerAnimation");
     }
 }
