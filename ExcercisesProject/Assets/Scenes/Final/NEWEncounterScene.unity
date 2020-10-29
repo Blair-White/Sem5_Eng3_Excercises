@@ -165,7 +165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75986666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15, y: 0.988, z: 0}
+  m_LocalPosition: {x: 0.1633, y: 0.9804, z: 0}
   m_LocalScale: {x: 0.47278234, y: 0.47278234, z: 0.47278234}
   m_Children:
   - {fileID: 1806857645}
@@ -185,7 +185,7 @@ Animator:
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncounterController: {fileID: 45991428}
+  MyHealthBar: {fileID: 0}
 --- !u!1 &118176766
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,17 +690,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384660889}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0788715, y: 1.0788715, z: 1.0788715}
+  m_LocalScale: {x: 0.98605067, y: 0.98605067, z: 0.98605067}
   m_Children: []
-  m_Father: {fileID: 1402538699}
+  m_Father: {fileID: 1272875008}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 286.84067, y: -117.32839}
+  m_SizeDelta: {x: 763.62164, y: 499.6933}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &384660891
 MonoBehaviour:
@@ -1976,6 +1977,7 @@ RectTransform:
   - {fileID: 153698043}
   - {fileID: 984973371}
   - {fileID: 484586292}
+  - {fileID: 384660890}
   m_Father: {fileID: 1402538699}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2406,7 +2408,6 @@ RectTransform:
   - {fileID: 298973023}
   - {fileID: 1272875008}
   - {fileID: 1556634682}
-  - {fileID: 384660890}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3216,9 +3217,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806857642}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.639, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.3710607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.47278234}
   m_Children: []
   m_Father: {fileID: 75986667}
   m_RootOrder: 0
@@ -3236,6 +3237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncounterController: {fileID: 45991428}
+  MyHealthBar: {fileID: 1552051224}
 --- !u!1 &1858824879
 GameObject:
   m_ObjectHideFlags: 0

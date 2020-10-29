@@ -16,7 +16,7 @@ MonoBehaviour:
   Damage: 0.25
   Healing: 0
   DebuffMessage: Paralyzed
-  Animator: {fileID: 9100000, guid: 5ea501c915d2e214796130a018d2a1e3, type: 2}
+  Animator: {fileID: 9100000, guid: bd8b97ce1bbfd664a97b809703ea863d, type: 2}
   ButtonText: Webbify
   ButtonTextColor: {r: 0.5566038, g: 0.19166073, b: 0.35646626, a: 0}
   Learnable: 1

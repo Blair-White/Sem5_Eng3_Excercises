@@ -37,9 +37,12 @@ public class NEWEncounterStartup : MonoBehaviour
     private int IdleCount;
     private int EnemySignatureCharges;
     private int EnemyDecidedAttack;
+    private Image EnemyBarFill;
+
     // Start is called before the first frame update
     void Start()
     {
+        EnemyBarFill = EnemyHealthBar.GetComponent<Image>();
         EnemySignatureCharges = Random.Range(1, 2);
         State = States.Idle;
         PlayerTurn = true;
@@ -82,6 +85,7 @@ public class NEWEncounterStartup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(_Enemy.GetComponent<SpriteRenderer>().sprite == null)
         {
             _Enemy.GetComponent<SpriteRenderer>().sprite = StartingEnemy.DefaultSprite;
@@ -100,6 +104,7 @@ public class NEWEncounterStartup : MonoBehaviour
                         _Ability2.SetActive(true);
                         _Ability3.SetActive(true);
                         _Ability4.SetActive(true);
+                        CombatDialogue.GetComponent<TextMeshProUGUI>().text = " ";
                         IdleCount = 0;
                     }
                     if(PlayerTurn == false)
@@ -125,6 +130,7 @@ public class NEWEncounterStartup : MonoBehaviour
         }
 
     }
+    
 
     public void ActivateAbility(int A)
     {
@@ -135,12 +141,17 @@ public class NEWEncounterStartup : MonoBehaviour
         _Ability3.SetActive(false);
         _Ability4.SetActive(false);
 
+        _Enemy.SendMessage("TakeDamage", PlayerAbilities[A].Damage);
+
         if(PlayerAbilities[A].IsIsolatedText == false)
             CombatDialogue.GetComponent<TextMeshProUGUI>().text ="Crono " + PlayerAbilities[A].CombatText + " " + StartingEnemy.Name;
         if (PlayerAbilities[A].IsIsolatedText == true)
             CombatDialogue.GetComponent<TextMeshProUGUI>().text ="Crono " + PlayerAbilities[A].CombatText;
+       
         State = States.Idle;
         PlayerTurn = false;
+
+       
     }
 
     void DecideEnemyAction()
@@ -151,6 +162,7 @@ public class NEWEncounterStartup : MonoBehaviour
             {
                 EnemyDecidedAttack = 1;
                 _EnemyParent.GetComponent<Animator>().runtimeAnimatorController = StartingEnemy.DefenseAbility.Animator;
+                CombatDialogue.GetComponent<TextMeshProUGUI>().text = StartingEnemy.DefenseAbility.CombatText;
                 PlayerTurn = true;
                 State = States.Idle;
                 return;
@@ -159,6 +171,7 @@ public class NEWEncounterStartup : MonoBehaviour
             {
                 EnemyDecidedAttack = 0;
                 _EnemyParent.GetComponent<Animator>().runtimeAnimatorController = StartingEnemy.BasicAttack.Animator;
+                CombatDialogue.GetComponent<TextMeshProUGUI>().text = StartingEnemy.BasicAttack.CombatText;
                 State = States.Idle;
                 PlayerTurn = true;
                 return;
@@ -173,6 +186,7 @@ public class NEWEncounterStartup : MonoBehaviour
                 EnemyDecidedAttack = 3;
                 EnemySignatureCharges--;
                 _EnemyParent.GetComponent<Animator>().runtimeAnimatorController = StartingEnemy.SignatureAbility.Animator;
+                CombatDialogue.GetComponent<TextMeshProUGUI>().text = StartingEnemy.SignatureAbility.CombatText;
                 PlayerTurn = true;
                 State = States.Idle;
                 return;
@@ -183,6 +197,7 @@ public class NEWEncounterStartup : MonoBehaviour
                 {
                     EnemyDecidedAttack = 2;
                     _EnemyParent.GetComponent<Animator>().runtimeAnimatorController = StartingEnemy.UtilityAbility.Animator;
+                    CombatDialogue.GetComponent<TextMeshProUGUI>().text = StartingEnemy.UtilityAbility.CombatText;
                     PlayerTurn = true;
                     State = States.Idle;
                     return;
@@ -191,6 +206,7 @@ public class NEWEncounterStartup : MonoBehaviour
                 {
                     EnemyDecidedAttack = 0;
                     _EnemyParent.GetComponent<Animator>().runtimeAnimatorController = StartingEnemy.BasicAttack.Animator;
+                    CombatDialogue.GetComponent<TextMeshProUGUI>().text = StartingEnemy.BasicAttack.CombatText;
                     State = States.Idle;
                     PlayerTurn = true;
                     return;
