@@ -16,7 +16,8 @@ MonoBehaviour:
   Damage: 0.05
   Healing: 0
   DebuffMessage: DoT_Slime
-  Animator: {fileID: 0}
+  Animator: {fileID: 9100000, guid: d4d9f59c98c8f3b409da28e663a09a4e, type: 2}
   ButtonText: Acid Slime
   ButtonTextColor: {r: 0.6206271, g: 0.9245283, b: 0.28346387, a: 1}
   Learnable: 1
+  IsIsolatedText: 0

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Mimic
   m_EditorClassIdentifier: 
   Name: Mimic
-  NameColor: {r: 0.8962264, g: 0.70560384, b: 0.30860624, a: 0}
+  NameColor: {r: 0.8962264, g: 0.70560384, b: 0.30860624, a: 1}
   BasicAttack: {fileID: 11400000, guid: f0551567cfe00094980e1f65a0aac7a3, type: 2}
   DefenseAbility: {fileID: 11400000, guid: 0daa5832962666541ab5740242564017, type: 2}
   UtilityAbility: {fileID: 11400000, guid: ff3486367aa8a3a4c927c1b1e11a79cc, type: 2}
   SignatureAbility: {fileID: 11400000, guid: d6512a7ff8b653c499c8a07f4d7d05b6, type: 2}
   DefaultAnimation: {fileID: 9100000, guid: 7318f86954ba9ce40ad9c7192c744780, type: 2}
+  DefaultSprite: {fileID: 21300000, guid: c2407349e00aa684794cf5ad457898db, type: 3}

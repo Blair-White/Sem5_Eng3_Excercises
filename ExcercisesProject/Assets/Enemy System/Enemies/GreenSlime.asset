@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: GreenSlime
   m_EditorClassIdentifier: 
   Name: Green Slime
-  NameColor: {r: 0.4438857, g: 0.990566, b: 0.44916326, a: 0}
+  NameColor: {r: 0.4438857, g: 0.990566, b: 0.44916326, a: 1}
   BasicAttack: {fileID: 11400000, guid: 7c243168ee6e2a647a04ae851eeda189, type: 2}
   DefenseAbility: {fileID: 11400000, guid: 0daa5832962666541ab5740242564017, type: 2}
   UtilityAbility: {fileID: 11400000, guid: 577a9535687d02445a7d9843d535f71b, type: 2}
   SignatureAbility: {fileID: 11400000, guid: ff3486367aa8a3a4c927c1b1e11a79cc, type: 2}
   DefaultAnimation: {fileID: 9100000, guid: 586923da1d14e9a4b94ba8ac024964cb, type: 2}
+  DefaultSprite: {fileID: 21300000, guid: 75bc4f250d0b09748a935984208834a5, type: 3}

@@ -20,6 +20,7 @@ public class ScriptableEnemy : ScriptableObject
     public ScriptableAbility SignatureAbility;
     [SerializeField]
     public AnimatorController DefaultAnimation;
-
+    [SerializeField]
+    public Sprite DefaultSprite;
 
 }

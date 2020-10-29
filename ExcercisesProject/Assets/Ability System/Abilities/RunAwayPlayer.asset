@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55944b13dc5230949944aa204d218da7, type: 3}
   m_Name: RunAwayPlayer
   m_EditorClassIdentifier: 
-  CombatText: Attempts To Run Away
+  CombatText: Attempts To Flee From
   Damage: 0
   Healing: 0
   DebuffMessage: AttemptFlee

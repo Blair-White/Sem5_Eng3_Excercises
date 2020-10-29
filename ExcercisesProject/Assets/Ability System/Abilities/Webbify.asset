@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55944b13dc5230949944aa204d218da7, type: 3}
   m_Name: Webbify
   m_EditorClassIdentifier: 
-  CombatText: Spins a web around
+  CombatText: Spins a Web Around
   Damage: 0.25
   Healing: 0
   DebuffMessage: Paralyzed
-  Animator: {fileID: 0}
+  Animator: {fileID: 9100000, guid: 5ea501c915d2e214796130a018d2a1e3, type: 2}
   ButtonText: Webbify
   ButtonTextColor: {r: 0.5566038, g: 0.19166073, b: 0.35646626, a: 0}
   Learnable: 1
+  IsIsolatedText: 0

@@ -20,3 +20,4 @@ MonoBehaviour:
   ButtonText: AcidHeal
   ButtonTextColor: {r: 0.5330188, g: 1, b: 0.77989036, a: 1}
   Learnable: 1
+  IsIsolatedText: 1

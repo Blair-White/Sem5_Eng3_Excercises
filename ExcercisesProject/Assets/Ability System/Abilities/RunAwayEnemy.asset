@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55944b13dc5230949944aa204d218da7, type: 3}
   m_Name: RunAwayEnemy
   m_EditorClassIdentifier: 
-  CombatText: Attempts To Run Away
+  CombatText: Attempts to Flee From
   Damage: 0
   Healing: 0
   DebuffMessage: AttemptFlee
   Animator: {fileID: 9100000, guid: 8471b18faaf4f2b4287c80ea09c956e6, type: 2}
   ButtonText: Flee
   ButtonTextColor: {r: 0.5, g: 0.4693396, b: 0.4693396, a: 1}
+  Learnable: 0

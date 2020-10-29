@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55944b13dc5230949944aa204d218da7, type: 3}
   m_Name: Struggle
   m_EditorClassIdentifier: 
-  CombatText: Struggle With
+  CombatText: Struggles With
   Damage: 0
   Healing: 0
   DebuffMessage: Struggle

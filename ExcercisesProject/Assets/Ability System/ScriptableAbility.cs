@@ -23,4 +23,6 @@ public class ScriptableAbility : ScriptableObject
     public Color ButtonTextColor;
     [SerializeField]
     public bool Learnable;
+    [SerializeField]
+    public bool IsIsolatedText;
 }
