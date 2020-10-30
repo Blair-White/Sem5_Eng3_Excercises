@@ -36,6 +36,7 @@ public class NEWEncounterAI : MonoBehaviour
 
     void TakeDamage(float dmg)
     {
+        if (dmg < 0) return;
         health -= dmg;
     }
 

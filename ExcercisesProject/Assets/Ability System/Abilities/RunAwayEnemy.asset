@@ -15,8 +15,9 @@ MonoBehaviour:
   CombatText: Attempts to Flee From
   Damage: 0
   Healing: 0
-  DebuffMessage: AttemptFlee
+  DebuffMessage: 
   Animator: {fileID: 9100000, guid: 8471b18faaf4f2b4287c80ea09c956e6, type: 2}
   ButtonText: Flee
   ButtonTextColor: {r: 0.5, g: 0.4693396, b: 0.4693396, a: 1}
   Learnable: 0
+  IsIsolatedText: 0

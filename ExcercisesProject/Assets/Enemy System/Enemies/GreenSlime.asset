@@ -19,4 +19,5 @@ MonoBehaviour:
   UtilityAbility: {fileID: 11400000, guid: 577a9535687d02445a7d9843d535f71b, type: 2}
   SignatureAbility: {fileID: 11400000, guid: ff3486367aa8a3a4c927c1b1e11a79cc, type: 2}
   DefaultAnimation: {fileID: 9100000, guid: 586923da1d14e9a4b94ba8ac024964cb, type: 2}
+  Defense: 0.1
   DefaultSprite: {fileID: 21300000, guid: 75bc4f250d0b09748a935984208834a5, type: 3}

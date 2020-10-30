@@ -21,6 +21,8 @@ public class ScriptableEnemy : ScriptableObject
     [SerializeField]
     public AnimatorController DefaultAnimation;
     [SerializeField]
+    public float Defense;
+    [SerializeField]
     public Sprite DefaultSprite;
 
 }

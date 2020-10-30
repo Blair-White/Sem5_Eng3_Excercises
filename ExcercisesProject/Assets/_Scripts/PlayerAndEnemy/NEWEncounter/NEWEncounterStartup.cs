@@ -31,22 +31,27 @@ public class NEWEncounterStartup : MonoBehaviour
     [SerializeField]
     private AnimatorController DefaultPlayerAnimation, DefaultEnemyAnimation;
 
-    private enum States { Idle, PlayerTurn, EnemyTurn, EndingCombat};
+    private enum States { Idle, PlayerTurn, EnemyTurn, EndingCombat, CombatEnd};
     private States State;
     private bool PlayerTurn;
     private int IdleCount;
     private int EnemySignatureCharges;
     private int EnemyDecidedAttack;
-    private Image EnemyBarFill;
-
+    private Image EnemyBarFill, PlayerBarFill;
+    private bool PlayerWin, PlayerDefeat;
+    private float playerDefense, DefendDefense, EnemyDefendDefense;
     // Start is called before the first frame update
     void Start()
     {
+        DefendDefense = 0;
+        EnemyDefendDefense = 0;
         EnemyBarFill = EnemyHealthBar.GetComponent<Image>();
+        PlayerBarFill = PlayerHealthBar.GetComponent<Image>();
         EnemySignatureCharges = Random.Range(1, 2);
         State = States.Idle;
         PlayerTurn = true;
 
+        playerDefense = PlayerPrefs.GetFloat("_Defense");
         Abilities[0] = PlayerPrefs.GetInt("Ability_1");
         Abilities[1] = PlayerPrefs.GetInt("Ability_2");
         Abilities[2] = PlayerPrefs.GetInt("Ability_3");
@@ -94,8 +99,20 @@ public class NEWEncounterStartup : MonoBehaviour
         switch (State)
         {
             case States.Idle:
+                if(EnemyBarFill.fillAmount <= 0)
+                {
+                    State = States.EndingCombat;
+                    PlayerWin = true;
+                }
+                if(PlayerBarFill.fillAmount <= 0)
+                {
+                    State = States.EndingCombat;
+                    PlayerDefeat = true;
+                }
+                
+                
                 IdleCount++;
-                if(IdleCount > 1022)
+                if(IdleCount > 800)
                 {
                     if (PlayerTurn)
                     {
@@ -117,13 +134,19 @@ public class NEWEncounterStartup : MonoBehaviour
                  
                 break;
             case States.PlayerTurn:
+                DefendDefense = 0;
                 break;
 
             case States.EnemyTurn:
+                EnemyDefendDefense = 0;
                 DecideEnemyAction();
                 break;
 
             case States.EndingCombat:
+
+                break;
+            case States.CombatEnd:
+
                 break;
             default:
                 break;
@@ -141,8 +164,12 @@ public class NEWEncounterStartup : MonoBehaviour
         _Ability3.SetActive(false);
         _Ability4.SetActive(false);
 
-        _Enemy.SendMessage("TakeDamage", PlayerAbilities[A].Damage);
-
+        _EnemyParent.SendMessage("TakeDamage", PlayerAbilities[A].Damage - StartingEnemy.Defense - EnemyDefendDefense);
+        if (PlayerAbilities[A].DebuffMessage != "")
+        {
+            this.gameObject.SendMessage(PlayerAbilities[A].DebuffMessage, false);
+        }
+        
         if(PlayerAbilities[A].IsIsolatedText == false)
             CombatDialogue.GetComponent<TextMeshProUGUI>().text ="Crono " + PlayerAbilities[A].CombatText + " " + StartingEnemy.Name;
         if (PlayerAbilities[A].IsIsolatedText == true)
@@ -163,6 +190,8 @@ public class NEWEncounterStartup : MonoBehaviour
                 EnemyDecidedAttack = 1;
                 _EnemyParent.GetComponent<Animator>().runtimeAnimatorController = StartingEnemy.DefenseAbility.Animator;
                 CombatDialogue.GetComponent<TextMeshProUGUI>().text = StartingEnemy.DefenseAbility.CombatText;
+                EnemyDefendDefense = 0.1f;
+                if (StartingEnemy.DefenseAbility.Healing > 0) _EnemyParent.SendMessage("Heal", StartingEnemy.DefenseAbility.Healing);
                 PlayerTurn = true;
                 State = States.Idle;
                 return;
@@ -187,13 +216,14 @@ public class NEWEncounterStartup : MonoBehaviour
                 EnemySignatureCharges--;
                 _EnemyParent.GetComponent<Animator>().runtimeAnimatorController = StartingEnemy.SignatureAbility.Animator;
                 CombatDialogue.GetComponent<TextMeshProUGUI>().text = StartingEnemy.SignatureAbility.CombatText;
+                if (StartingEnemy.SignatureAbility.Healing > 0) _EnemyParent.SendMessage("Heal", StartingEnemy.SignatureAbility.Healing);
                 PlayerTurn = true;
                 State = States.Idle;
                 return;
             }
             if(EnemySignatureCharges <= 0)
             {
-                if(Random.Range(0,100) > 75)
+                if(Random.Range(0,100) > 70)
                 {
                     EnemyDecidedAttack = 2;
                     _EnemyParent.GetComponent<Animator>().runtimeAnimatorController = StartingEnemy.UtilityAbility.Animator;
@@ -227,5 +257,24 @@ public class NEWEncounterStartup : MonoBehaviour
     void EndEnemyAnimation()
     {
         _EnemyParent.GetComponent<Animator>().runtimeAnimatorController = null;
+        _Enemy.GetComponent<Animator>().runtimeAnimatorController = DefaultEnemyAnimation;
     }
+
+    void Paralyzed(int Which) //0 enemy 1 player;
+    {
+
+    }
+
+    void Struggle(bool EnemyActivated)
+    {
+        
+        if(Random.Range(0,100) > 85)
+        {
+            if (EnemyActivated == false)
+                _EnemyParent.SendMessage("TakeDamage", 1.0f);
+            if (EnemyActivated == true)
+                PlayerBarFill.fillAmount -= PlayerBarFill.fillAmount;
+        }
+    }
+
 }

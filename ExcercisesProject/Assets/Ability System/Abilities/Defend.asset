@@ -15,8 +15,9 @@ MonoBehaviour:
   CombatText: Defends Against
   Damage: 0
   Healing: 0
-  DebuffMessage: Defend
+  DebuffMessage: 
   Animator: {fileID: 9100000, guid: db48789186d107949a5a55357d422cd1, type: 2}
   ButtonText: Defend
   ButtonTextColor: {r: 0, g: 0.05349303, b: 0.6698113, a: 1}
   Learnable: 1
+  IsIsolatedText: 0
